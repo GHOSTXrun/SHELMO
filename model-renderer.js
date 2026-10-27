@@ -14,7 +14,7 @@ export function createProductModel(canvas){
   dark:{color:[16,31,23],roughness:.65,spec:.1},
   light:{color:[188,245,99],emission:.9,roughness:.2,spec:.15}
  };
- let width=1,height=1,scale=1,yaw=.48,pitch=.36,zoom=1,selected=0,geometry=[],hits=[];
+ let width=1,height=1,scale=1,yaw=.48,pitch=.36,zoom=1,selected=0,hovered=-1,geometry=[],hits=[];
  const surface=document.createElement('canvas'),surfaceContext=surface.getContext('2d');
  ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
  const light=normalize([-0.65,1,0.85]);
@@ -46,9 +46,9 @@ export function createProductModel(canvas){
  function build(){geometry=[];hits=[];
   cylinder([0,-38,0],176,10,materials.dark);cylinder([0,-31,0],173,5,materials.metal);cylinder([0,-27,0],170,3,materials.graphite);torus([0,-25,0],166,.55,materials.moss);
   // Separate low-profile docks keep the computer itself as the focal point.
-  for(let i=0;i<6;i++){const a=i*Math.PI/3+.22,x=Math.cos(a)*129,z=Math.sin(a)*129;const m=i===selected?materials.lime:materials.moss;
-   cylinder([x,-21,z],22,6,materials.dark);torus([x,-17.5,z],20,.7,i===selected?materials.lime:materials.metal);
-   roundedBox([x,-9,z],[31,14,25],3,m,[0,-a,0],2);roundedBox([x,-.8,z],[23,1,17],1,materials.graphite,[0,-a,0],2);
+  for(let i=0;i<6;i++){const a=i*Math.PI/3+.22,x=Math.cos(a)*129,z=Math.sin(a)*129;const lift=i===hovered?4:0;const m=i===selected||i===hovered?materials.lime:materials.moss;
+   cylinder([x,-21,z],22,6,materials.dark);torus([x,-17.5,z],20,.7,i===selected||i===hovered?materials.lime:materials.metal);
+   roundedBox([x,-9+lift,z],[31,14,25],3,m,[0,-a,0],2);roundedBox([x,-.8+lift,z],[23,1,17],1,materials.graphite,[0,-a,0],2);
    hits.push({p:[x,3,z],index:i});
   }
   // Rubber feet and a continuous lower shell, rather than stacked wire boxes.
@@ -106,5 +106,5 @@ export function createProductModel(canvas){
  }
  function resize(){const rect=canvas.getBoundingClientRect();width=Math.max(1,rect.width);height=Math.max(1,rect.height);const dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);surface.width=Math.max(1,Math.round(Math.min(width*1.25,1150)));surface.height=Math.max(1,Math.round(height*surface.width/width));ctx.setTransform(dpr,0,0,dpr,0,0);scale=Math.min(width/455,height/355)*zoom;paint();}
  build();
- return {resize,paint,setView(a,b,z=zoom){yaw=a;pitch=b;zoom=z;scale=Math.min(width/455,height/355)*zoom;paint();},select(i){selected=i;build();paint();},hit(x,y){return hits.map(t=>({...t,...project(t.p)})).sort((a,b)=>Math.hypot(a.x-x,a.y-y)-Math.hypot(b.x-x,b.y-y)).find(t=>Math.hypot(t.x-x,t.y-y)<40)?.index;}};
+ return {resize,paint,setView(a,b,z=zoom){yaw=a;pitch=b;zoom=z;scale=Math.min(width/455,height/355)*zoom;paint();},select(i){selected=i;build();paint();},hover(i){if(i===hovered)return;hovered=i;build();paint();},hit(x,y){return hits.map(t=>({...t,...project(t.p)})).sort((a,b)=>Math.hypot(a.x-x,a.y-y)-Math.hypot(b.x-x,b.y-y)).find(t=>Math.hypot(t.x-x,t.y-y)<40)?.index;}};
 }
