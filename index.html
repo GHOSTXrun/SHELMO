@@ -1,120 +1,16 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Shellwork — a composable computer system built on Solana.">
-  <title>Shellwork / Source</title>
-  <link rel="icon" type="image/png" href="./shellwork-logo.png">
-  <link rel="stylesheet" href="./repository.css?v=shellwork-logo-2">
-  <link rel="stylesheet" href="./banner-color.css?v=shellwork-logo-2">
-</head>
-<body>
-<div class="ca-banner">
-  <span class="banner-spacer" aria-hidden="true"></span>
-  <div class="ca-value" aria-label="Contract address"><span>CA</span><b>FzgUnx7YfS1H1qNrKGLQtYMBJVDvcoryjNNXBMEqpump</b></div>
-  <a class="x-link" href="https://x.com/shellworkos" target="_blank" rel="noopener noreferrer" aria-label="Open Shellwork on X">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-  </a>
-</div>
-<div class="shell">
-  <aside class="left">
-    <section class="explorer">
-      <header class="repo-head">
-        <span class="mark"><img src="./shellwork-logo.png" alt=""></span>
-        <div><small>SHELLWORK / SOLANA</small><h1>shellwork</h1></div>
-        <div class="repo-actions">
-          <em>PUBLIC</em>
-          <a class="download-source" href="https://github.com/zunonhood/nockwork/archive/refs/heads/main.zip" aria-label="Download the complete Shellwork source code as a ZIP file">DOWNLOAD SOURCE .ZIP</a>
-          <a class="open-system" href="./system/">OPEN SYSTEM V2</a>
-        </div>
-      </header>
-      <div class="repo-meta"><span><i></i>main</span><span>v2.0.0</span><span>Solana source</span></div>
-      <nav id="fileTree" class="tree" aria-label="Project files"></nav>
-      <footer class="repo-foot"><span>HEAD</span><span>4f2c9a1</span><span>CHAIN-NATIVE COMPUTER</span></footer>
-    </section>
-
-    <section class="notes">
-      <div class="label"><span>01</span> A NOTE FROM THE BUILDER</div>
-      <p class="lead">I am building a new kind of computer system on top of Solana—one where applications, agents, storage, compute, licenses, and other parts of the system can be owned, exchanged, and recombined by the people who use them.</p>
-
-      <h3>WHY I STARTED</h3>
-      <p>Computers are called personal, but most of their important relationships are no longer personal. Our applications depend on company accounts. Our purchases can become inaccessible. Our files are pushed into services we do not control. A useful tool can disappear because a platform changes its rules, shuts down, or decides that our device is too old.</p>
-      <p>I do not think every company is malicious, and I do not believe blockchain automatically fixes these problems. I simply think we should be able to build another option: a computer where ownership is visible, permissions are understandable, and software can continue to exist beyond the company that first published it.</p>
-      <p>This idea began with a simple question. If a computer is made from many replaceable parts, why are the parts inside its software so difficult to own, exchange and recombine?</p>
-
-      <h3>THE SIMPLE VERSION</h3>
-      <p class="plain">Shellwork is a computer environment with its own internal market. It is not a shop for laptops or graphics cards. What people exchange inside it are digital parts of the system itself.</p>
-      <p>Those parts might be an application, an AI agent, a visual desktop, a month of encrypted storage, access to specialized computing power, a professional tool, an automation workflow, or a license that allows a component to run on your machine.</p>
-      <p>You could buy a component, rent it for a project, subscribe to its updates, resell a transferable license, or support the developer directly. The system would verify what you own and load the component without forcing you to depend on a single app store.</p>
-
-      <div class="label project"><span>02</span> WHAT THE PROJECT IS</div>
-      <h2>A local-first computer system with an economy built into its architecture.</h2>
-      <p>The project has three connected layers. The first is a familiar computer interface where people open files, use tools and manage their work. The second is a secure runtime that isolates components and controls what each one is allowed to access. The third is Solana, which records ownership, licenses, payments and the history of published components.</p>
-      <p>The computer does not run “inside” the blockchain. Code execution, private files and everyday interaction stay on the user's device whenever possible. Solana sits underneath the experience as the shared ownership and settlement layer.</p>
-
-      <h3>WHY SOLANA</h3>
-      <p>Solana programs store component records, listings and time-limited licenses in program-derived accounts. Purchases settle in SOL while the local runtime keeps code and private files on the user device.</p>
-      <p>Shellwork uses Solana for shared ownership and settlement. The browser connects to a Solana wallet, and the runtime checks account state and the component code hash before loading software.</p>
-
-      <h3>HOW A COMPONENT ENTERS THE SYSTEM</h3>
-      <ol>
-        <li>A developer publishes a component and a cryptographic fingerprint of its code.</li>
-        <li>The developer defines its price, license rules, update policy and required permissions.</li>
-        <li>A user buys, rents or receives the right to use that component.</li>
-        <li>The local system verifies the license and code fingerprint through Solana.</li>
-        <li>The runtime loads the component inside a restricted environment.</li>
-        <li>Payment and royalties are settled automatically according to the published rules.</li>
-      </ol>
-
-      <h3>WHAT CAN BE EXCHANGED</h3>
-      <p>Applications, plugins, AI agents, interface modules, storage plans, compute credits, datasets with clear usage rights, automation recipes, game content and transferable software licenses could all become system objects.</p>
-
-      <h3>WHAT MUST NEVER BECOME A MARKET</h3>
-      <p>Ownership must have limits. A person's identity, private keys, personal files, recovery rights and fundamental access to their own machine should never be commodities. No purchased module should be able to silently sell private information or take control of another component. The economy exists to serve the computer's owner—not to turn the owner into the product.</p>
-
-      <h3>DESIGN PRINCIPLES</h3>
-      <ul>
-        <li><b>User sovereignty.</b> Core identity and personal data cannot be revoked by a vendor.</li>
-        <li><b>Explicit capability boundaries.</b> Every module declares what it can read, change and transmit.</li>
-        <li><b>Local-first execution.</b> Owning a component does not force private work onto a public chain.</li>
-        <li><b>Developer continuity.</b> Creators can publish, version and earn without locking users into one storefront.</li>
-        <li><b>Replaceable parts.</b> No system module should become an irreplaceable gatekeeper.</li>
-      </ul>
-
-      <h3>WHAT THE FUTURE COULD LOOK LIKE</h3>
-      <p>Imagine opening a new computer and signing in with an identity you control. Your workspace reconstructs itself from a private manifest. The tools you own appear, your preferred interface loads, and every component clearly shows who built it, what it can access and whether its license can be transferred.</p>
-      <p>A designer could rent an expensive rendering module for one afternoon. A small developer could publish a useful system tool and receive payment each time a license changes hands. A community could maintain an abandoned application without losing its users. An AI agent could purchase a limited amount of compute through a session permission without receiving control of the owner's wallet.</p>
-      <p>Eventually, Shellwork could become a shared protocol rather than one company's operating system: many interfaces, many runtimes and many marketplaces using the same open component standard. Users could leave one implementation and carry their legitimate software rights into another.</p>
-
-      <h3>WHERE THE PROJECT IS TODAY</h3>
-      <p>This is an early architecture project. The repository currently demonstrates the core model: a capability-based kernel, a component registry, a license market and a local runtime. It is not yet a finished operating system, and the Solana program has not been presented as production-ready financial infrastructure.</p>
-      <p>The next serious work is to define the component standard, threat model, permission language and recovery model; deploy and test the Shellwork program on Solana devnet; and build a small local runtime that can install and safely launch one real component from beginning to end.</p>
-
-      <h3>THE QUESTIONS I AM NOT HIDING</h3>
-      <p>How should licenses survive forks? Which rights should never be transferable? How can account recovery work without rebuilding centralized custody? How do we stop speculation from overwhelming usefulness? What is the simplest permission language a non-technical user can genuinely understand?</p>
-      <p>I do not have final answers yet. Those questions are not weaknesses to cover with branding—they are the actual work of building the project responsibly.</p>
-
-      <h3>WHY THIS IS PUBLIC</h3>
-      <p>I am showing the work early because the project should be understandable before it becomes impressive. The code on the right is a concrete description of the direction, not proof that every problem has been solved. I want criticism from developers, designers and ordinary computer users while the foundations can still change.</p>
-      <p>If this succeeds, the blockchain will not be the first thing people notice. They will notice that their tools are portable, their permissions make sense, developers are paid fairly, and their computer continues to belong to them.</p>
-
-      <div class="tags"><span>COMPOSABLE</span><span>USER-OWNED</span><span>LOCAL-FIRST</span><span>PERMISSIONED</span><span>OPEN SOURCE</span></div>
-      <p class="signature">— Shellwork, development note 001</p>
-    </section>
-  </aside>
-
-  <main class="workspace">
-    <header class="work-head">
-      <div class="lights"><i></i><i></i><i></i></div>
-      <div id="currentPath">src / kernel.js</div>
-      <button id="copyButton">COPY</button>
-    </header>
-    <div class="toolbar"><span id="languageLabel">JAVASCRIPT</span><span id="lineCount">— LINES</span><span>UTF-8</span><span>LF</span></div>
-    <div class="code-scroll" id="codeScroll"><pre id="codeView"><code>Loading source…</code></pre></div>
-    <footer class="work-foot"><span>Shellwork Runtime V2</span><span id="loadState">READING OBJECT</span></footer>
-  </main>
-</div>
-<script src="./repository.js"></script>
-</body>
-</html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#043e2d"><meta name="description" content="NODUVI: a modular AI workspace concept. Explore work cartridges, permissions, budgets and tangible deliverables."><title>NODUVI — Your next computer runs on skills.</title><link rel="icon" href="./noduvi-logo.png"><link rel="stylesheet" href="./noduvi.css"><script src="./noduvi.js" defer></script></head>
+<body><header class="wrap"><div class="nav"><a class="brand" href="./"><img src="./noduvi-logo.png" alt="">NODUVI</a><nav aria-label="Main navigation"><a href="#cartridges">Cartridges</a><a href="#workspace">Workspace</a><a href="#how-it-works">How it works</a></nav><a class="nav-action" href="#workspace">Explore the demo <span>↗</span></a></div></header>
+<main><section class="hero wrap" aria-labelledby="hero-title"><div><div class="eyebrow"><span class="dot"></span>A little computer. A new way to work.</div><h1 id="hero-title">Your next computer<br>runs on <em>skills.</em></h1><p>Meet NODUVI. A home for useful AI workflows.<br>Plug in a work cartridge, set the boundaries,<br>and give every task a tangible finish line.</p><div class="actions"><a class="btn" href="#cartridges">Find your first cartridge ↗</a><a class="btn secondary" href="#workspace">Try the workspace</a></div><span class="tiny">PRODUCT CONCEPT / INTERACTIVE FRONTEND PREVIEW</span></div><div class="hero-art"><img src="./noduvi-logo.png" alt="NODUVI miniature computer with a glowing terminal and orange work cartridge" width="1254" height="1254" fetchpriority="high"><div class="art-tag"><span class="tag-icon">▣</span><div><b>Small cartridge. Real purpose.</b><small>One skill. One workflow. A clear deliverable.</small></div></div></div></section>
+<div class="wrap"><div class="strip"><span><i>⊞</i> MODULAR BY DESIGN</span><span><i>⌘</i> PERMISSIONS IN YOUR HANDS</span><span><i>◷</i> A BUDGET FOR EVERY TASK</span><span><i>↳</i> BUILT AROUND RESULTS</span></div></div>
+<section id="cartridges" class="section wrap"><div class="section-head"><div><div class="eyebrow">01 / THE CARTRIDGE COLLECTION</div><h2>Good work starts<br>with the right cartridge.</h2></div><p>Purpose-built workflows for the things on your list. Pick a cartridge to explore its permissions and sample output.</p></div><div class="cards">
+<article class="card"><div class="card-top"><span>NV—001 / RESEARCH</span><span class="pill">CONCEPT</span></div><div class="cartridge" aria-hidden="true"><div class="cassette"><b>RADAR</b><small>PROJECT INTELLIGENCE</small></div></div><h3>A little less keeping up.</h3><p>A workflow for following releases, tracking project changes, and preparing a source-linked daily brief.</p><div class="card-foot"><span>OUTPUT / PROJECT BRIEF</span><button data-install="radar" type="button" aria-label="Preview Project Radar">Explore Radar ↗</button></div></article>
+<article class="card purple"><div class="card-top"><span>NV—002 / CREATIVE</span><span class="pill">CONCEPT</span></div><div class="cartridge" aria-hidden="true"><div class="cassette"><b>STUDIO</b><small>IDEAS INTO WORDS</small></div></div><h3>Make room for your ideas.</h3><p>Turn verified project updates into release notes and announcement drafts, ready for your final edit.</p><div class="card-foot"><span>OUTPUT / CONTENT DRAFT</span><button data-install="studio" type="button" aria-label="Preview Content Studio">Explore Studio ↗</button></div></article>
+<article class="card blue"><div class="card-top"><span>NV—003 / OPERATIONS</span><span class="pill">CONCEPT</span></div><div class="cartridge" aria-hidden="true"><div class="cassette"><b>WATCH</b><small>YOUR SECOND PAIR OF EYES</small></div></div><h3>Keep an eye on the details.</h3><p>A workflow for checking public pages, reviewing important links, and collecting issues in one clear report.</p><div class="card-foot"><span>OUTPUT / ISSUE CHECKLIST</span><button data-install="watch" type="button" aria-label="Preview Site Watch">Explore Watch ↗</button></div></article>
+</div></section>
+<section id="workspace" class="work-section"><div class="section wrap"><div class="section-head"><div><div class="eyebrow">02 / YOUR WORK, AT HOME</div><h2>A calm place<br>to put things in motion.</h2></div><p>A clear task. Visible permissions. An output you can open. Explore a small preview of the NODUVI workspace.</p></div>
+<div class="desktop"><aside class="desktop-side"><a class="brand" href="#hero-title">NODUVI ✳</a><span class="side-item active">⊞ &nbsp; Workspace</span><a class="side-item" href="#cartridges">▣ &nbsp; Cartridges</a><a class="side-item" href="#how-it-works">↳ &nbsp; Your controls</a><small>LOCAL DEMO<br><br>No accounts connected</small></aside><div class="desktop-main"><div class="window-bar"><span class="window-dots" aria-hidden="true">● ● ●</span><span>workspace / first run</span><span>PREVIEW</span></div><h3>What’s on your list?</h3><p>Start with one small, well-defined task.</p>
+<div class="controls"><label>WORK CARTRIDGE<select id="cartridge"><option value="radar">01 · Project Radar</option><option value="studio">02 · Content Studio</option><option value="watch">03 · Site Watch</option></select></label><label style="flex:2">YOUR TASK<input id="task" maxlength="240" required value="Prepare my project update" placeholder="What would you like to work on?"></label><label style="flex:.65">BUDGET LIMIT<select id="budget"><option value="0">$0 · Demo</option><option value="1">$1 · Preview</option><option value="5">$5 · Preview</option></select></label></div><div class="run-row"><button class="btn" type="button" id="run">Run preview ↗</button><small id="permissions"></small></div><div class="output" id="output" role="status" aria-live="polite"></div></div></div><p class="status-note">An interactive product preview. Outputs are sample templates. Live AI execution, scheduling, purchases, and paid integrations are not connected.</p></div></section>
+<section id="how-it-works" class="section wrap"><div class="section-head"><div><div class="eyebrow">03 / SIMPLE ON PURPOSE</div><h2>You set the direction.<br>And the boundaries.</h2></div><p>The product vision: useful automation with understandable controls, from the first permission to the final file.</p></div><div class="steps"><article><span class="step-num">[ 01 — PLUG IN ]</span><h3>Give your work a skill.</h3><p>Choose a cartridge by the result you need. Its workflow, required access, and expected output should be clear before you start.</p></article><article><span class="step-num">[ 02 — SET THE RULES ]</span><h3>Keep the controls close.</h3><p>Define the task, choose what it can access, and set a spending limit. Publishing and sensitive actions should wait for your review.</p></article><article><span class="step-num">[ 03 — OPEN THE RESULT ]</span><h3>Get something you can use.</h3><p>A brief, a draft, or an issue list. The goal is a tangible deliverable with supporting evidence and a record of the work.</p></article></div></section>
+<div class="wrap"><section class="closing"><h2>Big possibilities.<br>One little computer.</h2><a class="btn" href="#workspace">Meet your workspace ↗</a></section></div></main>
+<footer class="wrap"><div class="footer"><div><a class="brand" href="./">NODUVI ✳</a><p>Plug in a skill. Get work done.</p><span>© 2026 NODUVI · Product concept</span></div><div class="footer-links"><a href="https://github.com/GHOSTXrun/SHELMO" target="_blank" rel="noopener noreferrer">Source code ↗</a><a href="./system/">Legacy runtime ↗</a><a href="#cartridges">Explore cartridges ↑</a></div></div></footer></body></html>
