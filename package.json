@@ -1,0 +1,12 @@
+{
+  "name": "noduvi",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A local-first cartridge workspace with real task execution and reviewable deliverables",
+  "engines": { "node": ">=22.16" },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env work/server.mjs",
+    "test": "node --test work/engine.test.mjs work/model.test.mjs work/server.test.mjs"
+  }
+}

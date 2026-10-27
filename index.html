@@ -3,59 +3,81 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="NODUVI — a composable computer system built on Solana.">
-  <title>NODUVI / Source</title>
+  <meta name="description" content="NODUVI System local system interface">
+  <title>NODUVI System</title>
   <link rel="icon" type="image/png" href="./noduvi-logo.png">
-  <link rel="stylesheet" href="./repository.css?v=shellwork-logo-2">
-  <link rel="stylesheet" href="./banner-color.css?v=shellwork-logo-2">
-<link rel="stylesheet" href="./noduvi-source.css"></head>
+  <link rel="stylesheet" href="./system/style.css">
+  <link rel="stylesheet" href="./noduvi-system.css">  <link rel="stylesheet" href="./work/workspace.css"></head>
 <body>
-<div class="ca-banner"><span>NODUVI / OPEN DEVELOPMENT</span><span>PLUG IN A SKILL. GET WORK DONE.</span><a href="./system/">ENTER SYSTEM ↗</a></div><div class="shell">
-  <aside class="left">
-    <section class="explorer">
-      <header class="repo-head">
-        <span class="mark"><img src="./noduvi-logo.png" alt=""></span>
-        <div><small>NODUVI / SOLANA</small><h1>noduvi</h1></div>
-        <div class="repo-actions">
-          <em>PUBLIC</em>
-          <a class="download-source" href="https://github.com/GHOSTXrun/SHELMO/archive/refs/heads/main.zip" aria-label="Download the complete NODUVI source code as a ZIP file">DOWNLOAD SOURCE .ZIP</a>
-          <a class="open-system" href="./system/">OPEN NODUVI SYSTEM</a>
-        </div>
-      </header>
-      <div class="repo-meta"><span><i></i>main</span><span>v2.0.0</span><span>Runtime source</span></div>
-      <nav id="fileTree" class="tree" aria-label="Project files"></nav>
-      <footer class="repo-foot"><span>HEAD</span><span>main</span><span>SKILL-POWERED COMPUTER</span></footer>
-    </section>
-
-    <section class="notes">
-      <div class="label"><span>01</span> THE NODUVI COMPUTER</div>
-      <p class="lead">A modular workspace for skills, tools and useful work. Plug in a cartridge, understand its permissions, and give every task a clear finish line.</p>
-      <h3>WORK CARTRIDGES</h3>
-      <p>Project Radar, Content Studio and Site Watch describe the direction: follow project updates, prepare content drafts and inspect websites. Each cartridge should declare the access it needs and the file or report it intends to deliver.</p>
-      <div class="label project"><span>02</span> YOUR SYSTEM, YOUR CONTROLS</div>
-      <h2>A computer interface with visible boundaries.</h2>
-      <p>The system keeps the component catalog, installed library, activity history and connection settings together. Open a cartridge to inspect its identity, permissions and license before installing a local sample.</p>
-      <p>Local demo records sample installs and launches. It does not run AI research, publish content or check websites. The proposed agent workflows, budgets and scheduling are future capabilities.</p>
-      <h3>WHAT EXISTS TODAY</h3>
-      <p>The repository includes a browser interface, component verification and permission modules, and a Solana licensing reference implementation. Chain purchases require a deployed compatible program and matching listings; sample catalog entries do not establish that deployment.</p>
-      <h3>BUILT IN THE OPEN</h3>
-      <p>Explore the actual source in this workspace, or enter the system to browse, inspect and install demonstration cartridges. Existing protocol identifiers remain compatible with the original runtime.</p>
-      <div class="tags"><span>MODULAR</span><span>LOCAL-FIRST</span><span>PERMISSIONED</span><span>OPEN SOURCE</span></div>
-      <a class="enter" href="./system/">OPEN NODUVI SYSTEM <span>↗</span></a>
-    </section>
-  </aside>
-
-  <main class="workspace">
-    <header class="work-head">
-      <div class="lights"><i></i><i></i><i></i></div>
-      <div id="currentPath">src / kernel.js</div>
-      <button id="copyButton">COPY</button>
+  <div class="computer">
+    <header class="topbar">
+      <a class="system-name" href="./source.html">NODUVI <b>SYSTEM</b></a>
+      <div class="chain-state"><i></i><span id="modeText">LOCAL DEMO</span></div>
+      <div id="clock">00:00</div>
+      <button id="walletButton" class="wallet">CONNECT WALLET</button>
     </header>
-    <div class="toolbar"><span id="languageLabel">JAVASCRIPT</span><span id="lineCount">— LINES</span><span>UTF-8</span><span>LF</span></div>
-    <div class="code-scroll" id="codeScroll"><pre id="codeView"><code>Loading source…</code></pre></div>
-    <footer class="work-foot"><span>NODUVI Runtime V2</span><span id="loadState">READING OBJECT</span></footer>
-  </main>
-</div>
-<script src="./repository.js"></script>
-</body>
+
+    <aside class="sidebar">
+      <div class="identity">
+        <span class="avatar"><img src="./noduvi-logo.png" alt=""></span>
+        <div><small>ACTIVE IDENTITY</small><strong id="identityText">LOCAL USER</strong></div>
+      </div>
+      <nav id="navigation">
+        <button class="active" data-view="market"><span>◫</span> Cartridges</button>
+        <button data-view="installed"><span>◇</span> Installed <em id="installedCount">0</em></button>
+        <button data-view="activity"><span>≋</span> Activity</button>
+        <button data-view="settings"><span>⌁</span> Chain Settings</button>
+      </nav>
+      <div class="system-health">
+        <small>SYSTEM HEALTH</small>
+        <p><i></i> Runtime available</p>
+        <p><i></i> Integrity verification</p>
+        <p class="muted"><i></i> Chain settlement</p>
+      </div>
+    </aside>
+
+    <main class="desktop">
+      <section class="view active" id="marketView">
+        <div class="view-head">
+          <div><small>WORK CARTRIDGES</small><h1>Plug in your next skill.</h1></div>
+          <label class="search"><span>⌕</span><input id="searchInput" placeholder="Search cartridges"></label>
+        </div>
+        <p class="noduvi-note"><strong>YOUR WORK, IN MODULES.</strong> Browse cartridges, inspect permissions and install local samples. Demo installs and launches are recorded locally; no live AI workflow runs here.</p><div class="filter-row" id="filters"></div>
+        <div class="catalog" id="catalog"></div>
+      </section>
+
+      <section class="view" id="installedView">
+        <div class="view-head"><div><small>YOUR SYSTEM</small><h1>Your installed cartridges.</h1></div></div>
+        <div class="installed-list" id="installedList"></div>
+      </section>
+
+      <section class="view" id="activityView">
+        <div class="view-head"><div><small>LOCAL + ONCHAIN</small><h1>System activity.</h1></div></div>
+        <div class="activity-list" id="activityList"></div>
+      </section>
+
+      <section class="view" id="settingsView">
+        <div class="view-head"><div><small>SOLANA</small><h1>Connection settings.</h1></div></div>
+        <form id="settingsForm" class="settings-form">
+          <label>NETWORK<select id="networkInput"><option value="devnet">Solana Devnet</option><option value="mainnet">Solana Mainnet</option></select></label>
+          <label>PROGRAM ID<input id="programInput" placeholder="Solana program address"></label>
+          <label>RPC URL (OPTIONAL)<input id="rpcInput" placeholder="https://api.devnet.solana.com"></label>
+          <p>Leave Program ID empty for Local Demo. Paid Solana purchases require a deployed Shellwork program and published listings. Wallet signatures stay inside your wallet.</p>
+          <button type="submit">SAVE CONFIGURATION</button>
+        </form>
+      </section>
+    </main>
+
+    <aside class="inspector" id="inspector">
+      <div class="empty-inspector"><span>◇</span><p>Select a cartridge to inspect its identity, permissions and license.</p></div>
+    </aside>
+
+    <footer class="statusbar">
+      <span>CAPABILITY KERNEL · READY</span>
+      <span id="statusMessage">No component selected</span>
+      <span>LOCAL-FIRST / PERMISSIONS VISIBLE</span>
+    </footer>
+  </div>
+  <script type="module" src="./system/system.js"></script>
+  <script type="module" src="./work/app.js"></script></body>
 </html>

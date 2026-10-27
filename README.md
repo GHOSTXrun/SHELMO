@@ -1,4 +1,50 @@
-# Shellwork
+# NODUVI
+
+A local-first work computer: choose a cartridge, define a task and its permissions, run it, and review a downloadable deliverable. The homepage opens the actual workbench. The original source explorer is available at `/source.html`; the original component library, wallet and chain settings remain in the system navigation.
+
+## Start the workspace
+
+Requires Node.js 22.16 or newer. No dependency installation is needed for the workspace or its local server.
+
+```sh
+npm start
+```
+
+Open `http://127.0.0.1:4173`. On Windows, double-click `START-NODUVI.cmd` as an alternative. The server binds only to the local computer. It is a personal workspace, not an authenticated multi-user hosted service.
+
+## Working cartridges
+
+| Cartridge | Execution | Deliverable |
+| --- | --- | --- |
+| Project Radar | Reads up to five public HTTPS pages; compares text hashes with successful saved baselines | Dated brief, source links, current and previous excerpts |
+| Content Studio | Formats verified source notes into a release draft, a short excerpt and a review checklist | Markdown content draft |
+| Site Watch | Reads source pages and checks up to three same-origin links per page | HTTP status and sampled link report |
+
+Tasks expose progress logs, cancellation, error states, history, reuse, report preview, Markdown download and deletion. Local tool execution costs $0. Reports distinguish fetched evidence from supplied notes. A fully failed source collection produces a failed task rather than a fabricated report. Pages are fetched as HTML/text; JavaScript rendering and authenticated pages are not supported.
+
+In static browser-only hosting, Studio works and saves tasks in this browser. Radar and Watch require the Node service. Browser and server histories are kept separate and displayed together while connected. Task deletion removes its notes and report; Radar comparison baselines remain in `.noduvi/data.json`. Delete that private local directory while the server is stopped to reset all server history and baselines. No background schedule runs when the server is stopped.
+
+## Optional AI assistance
+
+The default workflows use local rules and public page tools, not a language model. For AI-assisted analysis and writing, copy `.env.example` to `.env`, set a server-side Anthropic API key, an available model identifier, and the current input/output USD-per-million-token rates for your billing tier. Restart the server. Never commit the filled `.env` file; it is ignored and blocked by the static server.
+
+When configured, the workbench enables an explicit consent checkbox for sending task notes and collected excerpts to the provider. Each AI request requires a positive request budget. The server counts tokens first, reserves input headroom, and bounds output tokens before generation; it does not automatically retry paid calls. Displayed costs are estimates calculated from configured rates, and provider billing is authoritative. Token counts can differ from final usage, and cancelling an in-flight request may still incur provider charges. Keep provider account spending limits enabled. No AI request is made for the default $0 mode.
+
+The adapter uses the official [Messages API](https://platform.claude.com/docs/en/api/messages) and [token counting API](https://platform.claude.com/docs/en/build-with-claude/token-counting). No live provider verification is possible without your own configured credentials.
+
+## Validation
+
+```sh
+npm test
+```
+
+Tests cover network permission and budgets, private address rejection, snapshot changes, failed sources, bounded link checks, cancellation, Studio output, model preflight and usage, and the HTTP task/persistence/download/delete flow. Tests mock provider calls and public pages; they incur no model charges.
+
+## Runtime and protocol source
+
+The existing runtime and Solana reference implementation retain their original `shellwork` protocol identifiers for compatibility. The workspace is an extension of the same project. Chain settlement requires a separately deployed compatible program and actual listings; no production program deployment or transaction is implied by the UI.
+
+### Original runtime documentation
 
 Shellwork is a local-first component runtime with a Solana program for publishing code hashes, listing software licenses, receiving SOL payments, and recording access expiry.
 

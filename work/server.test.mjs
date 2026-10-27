@@ -1,0 +1,24 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { spawn } from 'node:child_process';
+import { mkdtemp,readFile,rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+test('HTTP service creates, persists, downloads and deletes a real Studio deliverable',async t=>{
+ const dir=await mkdtemp(path.join(tmpdir(),'noduvi-test-'));const port=4319;
+ const child=spawn(process.execPath,[fileURLToPath(new URL('./server.mjs',import.meta.url))],{env:{...process.env,PORT:String(port),NODUVI_DATA_DIR:dir},stdio:'pipe'});
+ t.after(async()=>{child.kill();await new Promise(resolve=>{if(child.exitCode!==null)resolve();else child.once('exit',resolve);});await rm(dir,{recursive:true,force:true});});
+ let ready=false;for(let i=0;i<80;i++){try{const r=await fetch(`http://127.0.0.1:${port}/api/health`);if(r.ok){ready=true;break;}}catch{}await new Promise(r=>setTimeout(r,50));}assert.ok(ready,'service starts');
+ const base=`http://127.0.0.1:${port}`;const post=(url,body,headers={})=>fetch(base+url,{method:'POST',headers:{'content-type':'application/json',...headers},body:JSON.stringify(body)});
+ assert.equal((await fetch(base+'/.noduvi/data.json')).status,403);
+ assert.equal((await post('/api/jobs',{}, {origin:'https://other.example'})).status,403);
+ assert.equal((await post('/api/jobs',{cartridge:'radar',title:'Blocked',urls:'https://example.com',network:false,budget:0})).status,400);
+ const response=await post('/api/jobs',{cartridge:'studio',title:'Integration release',notes:'Version 1 adds a real task queue and downloadable release notes.',budget:0,network:false,urls:''});assert.equal(response.status,202);const {job}=await response.json();
+ let current;for(let i=0;i<60;i++){current=(await (await fetch(base+'/api/jobs/'+job.id)).json()).job;if(current.status==='completed')break;await new Promise(r=>setTimeout(r,30));}assert.equal(current.status,'completed');assert.equal(current.hasReport,true);
+ const report=await fetch(base+'/api/jobs/'+job.id+'/report');assert.equal(report.status,200);assert.match(report.headers.get('content-disposition'),/release-draft.md/);assert.match(await report.text(),/real task queue/);
+ await new Promise(r=>setTimeout(r,80));const saved=JSON.parse(await readFile(path.join(dir,'data.json'),'utf8'));assert.ok(saved.jobs.some(j=>j.id===job.id&&j.markdown));
+ const blocked=await post('/api/jobs',{cartridge:'watch',title:'Private URL must fail',urls:'https://127.0.0.1',network:true,budget:0});const blockedJob=(await blocked.json()).job;let failed;for(let i=0;i<60;i++){failed=(await (await fetch(base+'/api/jobs/'+blockedJob.id)).json()).job;if(failed.status==='failed')break;await new Promise(r=>setTimeout(r,30));}assert.equal(failed.status,'failed');assert.equal(failed.hasReport,false);
+ assert.equal((await fetch(base+'/api/jobs/'+job.id,{method:'DELETE'})).status,200);assert.equal((await fetch(base+'/api/jobs/'+job.id)).status,404);
+ assert.equal((await fetch(base+'/')).status,200);assert.equal((await fetch(base+'/work/app.js')).status,200);
+});

@@ -4,3 +4,8 @@ repository-files/dist/
 .DS_Store
 Thumbs.db
 repository-files/target/
+
+.noduvi/
+.env
+.env.*
+!.env.example
