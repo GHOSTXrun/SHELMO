@@ -20854,27 +20854,27 @@ var catalog = [
   {
     id: "creative/pixel-forge",
     listingId: 0,
-    name: "Pixel Forge",
+    name: "Content Studio",
     icon: "PF",
     category: "Creative",
     price: "0.004 SOL",
     lamports: 4000000n,
     term: "30 DAYS",
     developer: "LOCAL SAMPLE",
-    description: "A local image workspace with non-destructive layers and export tools.",
+    description: "A sample content cartridge. Planned output: release notes and announcement drafts. AI execution is not connected.",
     permissions: ["storage:read", "storage:write"]
   },
   {
     id: "agents/research-node",
     listingId: 1,
-    name: "Research Node",
+    name: "Project Radar",
     icon: "RN",
     category: "Agents",
     price: "0.002 SOL",
     lamports: 2000000n,
     term: "7 DAYS",
     developer: "LOCAL SAMPLE",
-    description: "A source-first research agent that produces traceable working notes.",
+    description: "A sample research cartridge. Planned output: a source-linked project brief. Live research is not connected.",
     permissions: ["network:fetch", "storage:write"]
   },
   {
@@ -20913,7 +20913,7 @@ var catalog = [
     lamports: 0n,
     term: "PERPETUAL",
     developer: "LOCAL SAMPLE",
-    description: "A restrained keyboard-first shell for the Shellwork environment.",
+    description: "A keyboard-first interface component for the NODUVI environment.",
     permissions: ["storage:read"]
   },
   {
@@ -20973,7 +20973,7 @@ function renderCatalog() {
   $("#catalog").innerHTML = items.map((item) => {
     const installed = state.installed.includes(item.id);
     return '<article class="card ' + (state.selected?.id === item.id ? "selected" : "") + '" data-id="' + item.id + '"><div class="card-top"><span class="card-icon">' + item.icon + '</span><span class="card-category">' + item.category.toUpperCase() + "</span></div><h2>" + escapeHtml(item.name) + "</h2><p>" + escapeHtml(item.description) + '</p><div class="card-foot"><div class="price"><strong>' + item.price + "</strong><small>" + item.term + '</small></div><button data-buy="' + item.id + '">' + (installed ? "INSTALLED" : item.lamports === 0n ? "INSTALL" : "ACQUIRE") + "</button></div></article>";
-  }).join("") || '<div class="empty-list">No components match this search.</div>';
+  }).join("") || '<div class="empty-list">No cartridges match this search.</div>';
   $("#catalog").querySelectorAll(".card").forEach((card) => {
     card.onclick = (event) => {
       state.selected = catalog.find((item) => item.id === card.dataset.id);
@@ -20986,7 +20986,7 @@ function renderCatalog() {
 function renderInspector() {
   const item = state.selected;
   const installed = state.installed.includes(item.id);
-  $("#inspector").innerHTML = '<div class="inspect-label">COMPONENT / ' + escapeHtml(item.category.toUpperCase()) + "</div><h2>" + escapeHtml(item.name) + '</h2><div class="publisher">PUBLISHED BY ' + item.developer + '</div><p class="description">' + escapeHtml(item.description) + '</p><div class="inspect-section"><h3>REQUESTED CAPABILITIES</h3>' + item.permissions.map((permission) => '<div class="permission"><span>' + permission + '</span><b class="safe">DECLARED</b></div>').join("") + '</div><div class="inspect-section"><h3>LICENSE</h3><div class="license-box"><div><span>PRICE</span><b>' + item.price + "</b></div><div><span>DURATION</span><b>" + item.term + "</b></div><div><span>STATUS</span><b>" + (installed ? "INSTALLED" : "AVAILABLE") + '</b></div></div></div><div class="inspect-actions"><button class="action primary" id="inspectAcquire">' + (installed ? "LAUNCH COMPONENT" : item.lamports === 0n ? "INSTALL LOCALLY" : "ACQUIRE LICENSE") + '</button><button class="action" id="inspectSource">VIEW COMPONENT ID</button></div>';
+  $("#inspector").innerHTML = '<div class="inspect-label">COMPONENT / ' + escapeHtml(item.category.toUpperCase()) + "</div><h2>" + escapeHtml(item.name) + '</h2><div class="publisher">PUBLISHED BY ' + item.developer + '</div><p class="description">' + escapeHtml(item.description) + '</p><div class="inspect-section"><h3>REQUESTED CAPABILITIES</h3>' + item.permissions.map((permission) => '<div class="permission"><span>' + permission + '</span><b class="safe">DECLARED</b></div>').join("") + '</div><div class="inspect-section"><h3>LICENSE</h3><div class="license-box"><div><span>PRICE</span><b>' + item.price + "</b></div><div><span>DURATION</span><b>" + item.term + "</b></div><div><span>STATUS</span><b>" + (installed ? "INSTALLED" : "AVAILABLE") + '</b></div></div></div><div class="inspect-actions"><button class="action primary" id="inspectAcquire">' + (installed ? "LAUNCH SAMPLE" : item.lamports === 0n ? "INSTALL LOCALLY" : "ACQUIRE LICENSE") + '</button><button class="action" id="inspectSource">VIEW CARTRIDGE ID</button></div>';
   $("#inspectAcquire").onclick = () => installed ? launch(item) : acquire(item);
   $("#inspectSource").onclick = () => setStatus(item.id);
 }
@@ -21330,4 +21330,3 @@ safe-buffer/index.js:
 @noble/curves/esm/secp256k1.js:
   (*! noble-curves - MIT License (c) 2022 Paul Miller (paulmillr.com) *)
 */
-//# sourceMappingURL=system.js.map

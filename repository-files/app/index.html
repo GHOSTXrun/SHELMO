@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Shellwork V2 local system interface">
-  <title>Shellwork V2</title>
-  <link rel="icon" type="image/png" href="../shellwork-logo.png">
+  <meta name="description" content="NODUVI System local system interface">
+  <title>NODUVI System</title>
+  <link rel="icon" type="image/png" href="../noduvi-logo.png">
   <link rel="stylesheet" href="./style.css?v=shellwork-logo-2">
-</head>
+  <link rel="stylesheet" href="../noduvi-system.css"></head>
 <body>
   <div class="computer">
     <header class="topbar">
-      <a class="system-name" href="../">SHELLWORK <b>V2</b></a>
+      <a class="system-name" href="../">NODUVI <b>SYSTEM</b></a>
       <div class="chain-state"><i></i><span id="modeText">LOCAL DEMO</span></div>
       <div id="clock">00:00</div>
       <button id="walletButton" class="wallet">CONNECT WALLET</button>
@@ -19,11 +19,11 @@
 
     <aside class="sidebar">
       <div class="identity">
-        <span class="avatar"><img src="../shellwork-logo.png" alt=""></span>
+        <span class="avatar"><img src="../noduvi-logo.png" alt=""></span>
         <div><small>ACTIVE IDENTITY</small><strong id="identityText">LOCAL USER</strong></div>
       </div>
       <nav id="navigation">
-        <button class="active" data-view="market"><span>◫</span> Marketplace</button>
+        <button class="active" data-view="market"><span>◫</span> Cartridges</button>
         <button data-view="installed"><span>◇</span> Installed <em id="installedCount">0</em></button>
         <button data-view="activity"><span>≋</span> Activity</button>
         <button data-view="settings"><span>⌁</span> Chain Settings</button>
@@ -39,15 +39,15 @@
     <main class="desktop">
       <section class="view active" id="marketView">
         <div class="view-head">
-          <div><small>COMPONENT MARKET</small><h1>Build your computer.</h1></div>
-          <label class="search"><span>⌕</span><input id="searchInput" placeholder="Search components"></label>
+          <div><small>WORK CARTRIDGES</small><h1>Plug in your next skill.</h1></div>
+          <label class="search"><span>⌕</span><input id="searchInput" placeholder="Search cartridges"></label>
         </div>
-        <div class="filter-row" id="filters"></div>
+        <p class="noduvi-note"><strong>YOUR WORK, IN MODULES.</strong> Browse cartridges, inspect permissions and install local samples. Demo installs and launches are recorded locally; no live AI workflow runs here.</p><div class="filter-row" id="filters"></div>
         <div class="catalog" id="catalog"></div>
       </section>
 
       <section class="view" id="installedView">
-        <div class="view-head"><div><small>YOUR SYSTEM</small><h1>Installed components.</h1></div></div>
+        <div class="view-head"><div><small>YOUR SYSTEM</small><h1>Your installed cartridges.</h1></div></div>
         <div class="installed-list" id="installedList"></div>
       </section>
 
@@ -69,15 +69,15 @@
     </main>
 
     <aside class="inspector" id="inspector">
-      <div class="empty-inspector"><span>◇</span><p>Select a component to inspect its ownership, permissions and license.</p></div>
+      <div class="empty-inspector"><span>◇</span><p>Select a cartridge to inspect its identity, permissions and license.</p></div>
     </aside>
 
     <footer class="statusbar">
       <span>CAPABILITY KERNEL · READY</span>
       <span id="statusMessage">No component selected</span>
-      <span>LOCAL-FIRST / CHAIN-VERIFIED</span>
+      <span>LOCAL-FIRST / PERMISSIONS VISIBLE</span>
     </footer>
   </div>
-  <script type="module" src="./system.js"></script>
+  <script type="module" src="./main.js"></script>
 </body>
 </html>
