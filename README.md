@@ -1,5 +1,7 @@
 # NODUVI
 
+Read the [NODUVI whitepaper](whitepaper.html) for the product vision, current architecture, permissions, implementation status and roadmap. Its appendix preserves the complete original architecture note from the supplied project archive. The workspace sidebar and header both link to the whitepaper; use the reading page's Print / Save PDF button for an offline copy.
+
 A local-first work computer: choose a cartridge, define a task and its permissions, run it, and review a downloadable deliverable. The homepage opens the actual workbench. The original source explorer is available at `/source.html`; the original component library, wallet and chain settings remain in the system navigation.
 
 ## Start the workspace
