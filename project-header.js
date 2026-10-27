@@ -8,7 +8,7 @@
  let timer;
  function message(text){notice.textContent=text;notice.hidden=false;clearTimeout(timer);timer=setTimeout(()=>notice.hidden=true,4500);}
  const ca=String(config.contractAddress||'').trim();
- address.value=ca||'TO BE ANNOUNCED';address.title=ca||'The official NODUVI contract address has not been provided.';copy.disabled=!ca;
+ address.value=ca||'TBA';address.title=ca||'The official NODUVI contract address has not been provided.';copy.disabled=!ca;
  copy.title=ca?'Copy contract address':'Contract address pending';
  address.onclick=()=>{if(ca)address.select();};
  copy.onclick=async()=>{if(!ca)return;try{await navigator.clipboard.writeText(ca);copy.textContent='COPIED';setTimeout(()=>copy.textContent='COPY',1800);}catch{address.focus();address.select();message('Select the address and press Ctrl+C to copy.');}};
