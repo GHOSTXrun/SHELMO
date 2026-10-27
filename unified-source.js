@@ -8,6 +8,7 @@
     {name:'src',id:'src',folder:true,open:false},
     ...['kernel.js','computer.js','component-store.js','permissions.js','manifest.js','license-providers.js','market-client.js','solana-codec.js'].map(name=>({name,path:'repository-files/src/'+name,parent:'src',language:'JavaScript'})),
     {name:'system-model.js',path:'system-model.js',language:'JavaScript'},
+    {name:'model-renderer.js',path:'model-renderer.js',language:'JavaScript'},
     {name:'index.html',path:'index.html',language:'HTML'},
     {name:'unified.css',path:'unified.css',language:'CSS'},
     {name:'package.json',path:'package.json',language:'JSON'}
