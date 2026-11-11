@@ -7,7 +7,8 @@
  const notice=document.querySelector('#projectLinkNotice');
  let timer;
  function message(text){notice.textContent=text;notice.hidden=false;clearTimeout(timer);timer=setTimeout(()=>notice.hidden=true,4500);}
- const ca=String(config.contractAddress||'').trim();
+ const embedded=String(address.value||'').trim();
+ const ca=String(config.contractAddress||(embedded==='TBA'?'':embedded)).trim();
  address.value=ca||'TBA';address.title=ca||'The official NODQEN contract address has not been provided.';copy.disabled=!ca;
  copy.title=ca?'Copy contract address':'Contract address pending';
  address.onclick=()=>{if(ca)address.select();};
