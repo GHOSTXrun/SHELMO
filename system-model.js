@@ -1,4 +1,4 @@
-import { createProductModel } from './model-renderer.js?v=nodqen-1';
+const { createProductModel } = await import('./studio-model.js?v=studio-1').catch(() => import('./model-renderer.js?v=nodqen-1'));
 const canvas=document.querySelector('#systemModel');
 const modules=[
     {name:'Radar',title:'01 / Project Radar',description:'Read public source pages, compare saved text snapshots, and collect a dated brief with links and excerpts. Network access is explicitly authorized.'},

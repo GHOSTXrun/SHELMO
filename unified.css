@@ -13,3 +13,13 @@ body{background:radial-gradient(ellipse at 80% 0,#303526 0,transparent 45%),var(
 .model-stage .stage-label,.model-stage .stage-label.right,.model-stage .model-hint{color:#30391b}
 .model-stage:before,.model-stage:after{border-color:#536b23}
 @media print{.repo-brand{background:white;color:black}}
+
+/* Product studio: graphite atmosphere, lime edge lighting and generous breathing room. */
+.model-stage,.model-stage.is-hovered{min-height:540px;background:radial-gradient(ellipse at 64% 25%,#b6ff001b,transparent 57%),radial-gradient(ellipse at 25% 90%,#eff2dc0b,transparent 65%),#191b16;box-shadow:inset 0 0 100px #0003}
+.model-stage .stage-label,.model-stage .stage-label.right{color:#b5bd9b}
+.model-stage .model-hint{color:#899078;letter-spacing:1px}
+.model-stage:before,.model-stage:after{border-color:#657641}
+#systemModel{min-height:540px}
+.model-head{padding:18px 22px;background:#1c1f18}
+.model-live-label{color:#b6ff00}
+@media(max-width:540px){.model-stage,#systemModel{min-height:390px}.model-stage .stage-label.right{display:none}}
