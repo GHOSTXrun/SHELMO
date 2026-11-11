@@ -1,6 +1,6 @@
-# NODUVI
+# NODQEN
 
-The [unified NODUVI page](index.html) contains the source explorer, a rotatable computer-and-cartridge architecture model, the complete whitepaper and an expandable task workbench. The whitepaper appendix preserves the complete original architecture note. Use the reading panel's Print / Save PDF button for an offline copy. The old source and whitepaper URLs redirect to their sections on this page.
+The [unified NODQEN page](index.html) contains the source explorer, a rotatable computer-and-cartridge architecture model, the complete whitepaper and an expandable task workbench. The whitepaper appendix preserves the complete original architecture note. Use the reading panel's Print / Save PDF button for an offline copy. The old source and whitepaper URLs redirect to their sections on this page.
 
 A local-first work computer: choose a cartridge, define a task and its permissions, run it, and review a downloadable deliverable. Open the workbench section on the same page to run tasks. The component library, wallet and chain settings remain available inside the embedded system.
 
@@ -12,7 +12,7 @@ Requires Node.js 22.16 or newer. No dependency installation is needed for the wo
 npm start
 ```
 
-Open `http://127.0.0.1:4173`. On Windows, double-click `START-NODUVI.cmd` as an alternative. The server binds only to the local computer. It is a personal workspace, not an authenticated multi-user hosted service.
+Open `http://127.0.0.1:4173`. On Windows, double-click `START-NODQEN.cmd` as an alternative. The server binds only to the local computer. It is a personal workspace, not an authenticated multi-user hosted service.
 
 ## Working cartridges
 

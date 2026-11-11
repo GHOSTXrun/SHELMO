@@ -1,4 +1,4 @@
-// Dependency-free shaded geometry renderer for the NODUVI product model.
+// Dependency-free shaded geometry renderer for the NODQEN product model.
 export function createProductModel(canvas){
  const ctx=canvas.getContext('2d');if(!ctx)return null;
  const normalize=v=>{const n=Math.hypot(...v)||1;return v.map(a=>a/n);};
@@ -6,13 +6,13 @@ export function createProductModel(canvas){
  const materials={
   ceramic:{color:[218,211,184],roughness:.55,spec:.13},
   rim:{color:[171,170,144],roughness:.4,spec:.18},
-  graphite:{color:[25,37,30],roughness:.5,spec:.16},
-  glass:{color:[9,24,21],roughness:.16,spec:.6},
-  lime:{color:[169,211,53],roughness:.4,spec:.25},
+  graphite:{color:[38,39,35],roughness:.5,spec:.16},
+  glass:{color:[8,10,7],roughness:.16,spec:.6},
+  lime:{color:[182,246,0],roughness:.4,spec:.25},
   moss:{color:[66,88,56],roughness:.55,spec:.15},
   metal:{color:[47,65,50],roughness:.35,spec:.23},
   dark:{color:[16,31,23],roughness:.65,spec:.1},
-  light:{color:[188,245,99],emission:.9,roughness:.2,spec:.15}
+  light:{color:[184,255,0],emission:.9,roughness:.2,spec:.15}
  };
  let width=1,height=1,scale=1,yaw=.48,pitch=.36,zoom=1,selected=0,hovered=-1,geometry=[],hits=[];
  const surface=document.createElement('canvas'),surfaceContext=surface.getContext('2d');
@@ -51,27 +51,27 @@ export function createProductModel(canvas){
    roundedBox([x,-9+lift,z],[31,14,25],3,m,[0,-a,0],2);roundedBox([x,-.8+lift,z],[23,1,17],1,materials.graphite,[0,-a,0],2);
    hits.push({p:[x,3,z],index:i});
   }
-  // Rubber feet and a continuous lower shell, rather than stacked wire boxes.
-  for(const x of [-40,40])for(const z of [-28,28])roundedBox([x,-17,z],[17,13,17],5,materials.graphite,[0,0,0],3);
-  roundedBox([0,66,0],[118,156,104],16,materials.ceramic,[0,0,0],7);
-  // Recessed seam around the screen bezel.
-  roundedBox([-4,91,51],[101,94,9],15,materials.rim,[0,0,0],5);
-  roundedBox([-4,92,56],[91,82,9],13,materials.graphite,[0,0,0],5);
-  roundedBox([-4,94,61],[78,66,5],11,materials.glass,[0,0,0],6);
-  // Machined side port and a detachable lime cartridge.
-  roundedBox([59,66,4],[5,46,58],7,materials.rim,[0,0,0],4);
-  roundedBox([62,66,4],[5,37,49],5,materials.graphite,[0,0,0],4);
-  roundedBox([82,66,4],[42,32,43],5,materials.lime,[0,0,0],5);
-  roundedBox([102,66,4],[4,26,36],4,materials.lime,[0,0,0],3);
-  roundedBox([104.2,66,4],[1.3,15,12],3,materials.moss,[0,0,0],3);
-  // Raised terminal glyphs sit just above the glass and catch no hard outlines.
-  roundedBox([-19,104,64.1],[18,3.4,1.1],1.5,materials.light,[0,0,-.72],3);
-  roundedBox([-19,93,64.1],[18,3.4,1.1],1.5,materials.light,[0,0,.72],3);
-  roundedBox([4,87,64.1],[15,3.2,1.1],1.5,materials.light,[0,0,0],3);
-  cylinder([-33,16,52],9.2,2.6,materials.graphite,[Math.PI/2,0,0],32);
-  cylinder([-33,16,53.7],6.9,2.4,materials.lime,[Math.PI/2,0,0],32);
-  for(let i=0;i<2;i++)roundedBox([24,17-i*10,51.8],[27,3,3],1.4,materials.graphite,[0,0,0],2);
-  for(let i=0;i<5;i++)roundedBox([-25+i*12,141,3],[4,1,28],1.2,materials.rim,[0,0,0],2);
+  // NODQEN: stepped graphite enclosure, inset glass and notched top cartridge.
+  roundedBox([0,73,-4],[208,132,84],17,materials.graphite,[0,0,0],7);
+  roundedBox([0,72,39],[218,108,18],12,materials.graphite,[0,0,0],6);
+  roundedBox([0,72,46],[197,124,13],12,materials.dark,[0,0,0],6);
+  roundedBox([0,72,53],[184,109,9],13,materials.glass,[0,0,0],7);
+  // Stepped corners frame the wide face.
+  for(const x of [-1,1])for(const y of [27,117])
+   roundedBox([x*94,y,48],[22,25,16],7,materials.graphite,[0,0,0],4);
+  // Angry pixel eyes: raised outer corners and lower inner corners.
+  for(const side of [-1,1]){
+   roundedBox([side*57,83,59],[23,28,3],5,materials.light,[0,0,0],4);
+   roundedBox([side*40,77,59],[27,18,3],4,materials.light,[0,0,0],4);
+  }
+  roundedBox([0,49,59],[31,7,3],3,materials.ceramic,[0,0,0],4);
+  // Recessed cartridge socket, ivory base and lime U-shaped cap.
+  roundedBox([55,139,-1],[72,9,58],10,materials.dark,[0,0,0],5);
+  roundedBox([55,148,-1],[57,19,40],5,materials.ceramic,[0,0,0],5);
+  roundedBox([55,162,-1],[61,16,44],6,materials.lime,[0,0,0],5);
+  for(const x of [35,75])roundedBox([x,174,-1],[21,17,44],5,materials.lime,[0,0,0],5);
+  for(let i=0;i<3;i++)roundedBox([105,56+i*12,-5],[3,5,29],2,materials.dark,[0,0,0],3);
+
  }
  function project(p){const x=p[0]*Math.cos(yaw)-p[2]*Math.sin(yaw),z=p[0]*Math.sin(yaw)+p[2]*Math.cos(yaw),y=p[1]-45;const d=z*Math.cos(pitch)+y*Math.sin(pitch);const k=820/(820-d);return {x:width*.48+x*scale*k,y:height*.54+(-y*Math.cos(pitch)+z*Math.sin(pitch))*scale*k,d};}
  function shade(material,normal,center){const diffuse=Math.max(0,dot(normal,light));const up=normal[1]*.5+.5;const camera=[Math.sin(yaw)*820*Math.cos(pitch),820*Math.sin(pitch)+45,Math.cos(yaw)*820*Math.cos(pitch)];const view=normalize(camera.map((n,i)=>n-center[i]));const half=normalize(light.map((n,i)=>n+view[i]));const shine=Math.pow(Math.max(0,dot(normal,half)),material.roughness<.2?95:28)*material.spec;const ambient=.43+.17*up;const luminance=material.emission?1:ambient+diffuse*.43;
@@ -99,10 +99,7 @@ export function createProductModel(canvas){
    }
   }
   surfaceContext.putImageData(image,0,0);ctx.drawImage(surface,0,0,width,height);
-  // A restrained reflection and engraved faceplate finish the display.
-  if(Math.cos(yaw)>.15){const a=project([-38,121,64.7]),b=project([30,121,64.7]),c=project([-38,69,64.7]);ctx.save();ctx.transform((b.x-a.x)/68,(b.y-a.y)/68,(c.x-a.x)/52,(c.y-a.y)/52,a.x,a.y);const reflection=ctx.createLinearGradient(0,0,55,45);reflection.addColorStop(0,'rgba(186,217,207,.13)');reflection.addColorStop(.55,'rgba(186,217,207,0)');ctx.fillStyle=reflection;ctx.beginPath();ctx.moveTo(1,5);ctx.quadraticCurveTo(2,0,8,0);ctx.lineTo(40,0);ctx.lineTo(3,39);ctx.closePath();ctx.fill();ctx.restore();
-   const p=project([-36,38,53]),q=project([36,38,53]),r=project([-36,28,53]);ctx.save();ctx.transform((q.x-p.x)/72,(q.y-p.y)/72,(r.x-p.x)/10,(r.y-p.y)/10,p.x,p.y);ctx.fillStyle='#65705a';ctx.font='5px Arial';ctx.fillText('N O D U V I',0,5);ctx.fillStyle='#77816a';ctx.font='3px Arial';ctx.fillText('PERSONAL WORK COMPUTER',39,5);ctx.restore();
-  }
+
  }
  function resize(){const rect=canvas.getBoundingClientRect();width=Math.max(1,rect.width);height=Math.max(1,rect.height);const dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);surface.width=Math.max(1,Math.round(Math.min(width*1.25,1150)));surface.height=Math.max(1,Math.round(height*surface.width/width));ctx.setTransform(dpr,0,0,dpr,0,0);scale=Math.min(width/455,height/355)*zoom;paint();}
  build();

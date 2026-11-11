@@ -20913,7 +20913,7 @@ var catalog = [
     lamports: 0n,
     term: "PERPETUAL",
     developer: "LOCAL SAMPLE",
-    description: "A keyboard-first interface component for the NODUVI environment.",
+    description: "A keyboard-first interface component for the NODQEN environment.",
     permissions: ["storage:read"]
   },
   {
