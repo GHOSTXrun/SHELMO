@@ -39,3 +39,7 @@ body{background:radial-gradient(ellipse at 80% 0,#15d85116,transparent 52%),#161
 .row.active,.node-tabs button[aria-pressed="true"]{color:#63f28d;background:#15d85112}
 .token-key{color:#63ef8b}.token-string{color:#e3dfc0}.token-number{color:#dfca9b}
 @media print{body,.repo-brand{background:white;color:black}}
+
+.model-stage{overflow:hidden}
+.model-stage .stage-label.right{font-size:8px;line-height:1.8;letter-spacing:1.2px}
+.model-hint{max-width:calc(100% - 55px);line-height:1.8}

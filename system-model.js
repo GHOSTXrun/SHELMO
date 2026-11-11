@@ -1,4 +1,4 @@
-const { createProductModel } = await import('./studio-model.js?v=green-3').catch(() => import('./model-renderer.js?v=nodqen-1'));
+const { createProductModel } = await import('./precision-model.js?v=mesh-1').catch(() => import('./model-renderer.js?v=nodqen-1'));
 const canvas=document.querySelector('#systemModel');
 const modules=[
     {name:'Radar',title:'01 / Project Radar',description:'Read public source pages, compare saved text snapshots, and collect a dated brief with links and excerpts. Network access is explicitly authorized.'},
@@ -36,7 +36,7 @@ setInterval(()=>{if(document.hidden||reduced.matches||codeHover||codeScroller.ma
 const renderer=createProductModel(canvas);
 if(!renderer){$('#nodeDescription').textContent='The model is unavailable in this browser. Use the module buttons to explore the architecture.';loadSource(0);}
 else{
- let baseYaw=.48,basePitch=.24,yaw=baseYaw,pitch=basePitch,zoom=1,drag=null,moved=false,visible=false,last=0,frame,pointer={x:0,y:0,inside:false},pauseUntil=0;
+ let baseYaw=.4,basePitch=.2,yaw=baseYaw,pitch=basePitch,zoom=1,drag=null,moved=false,visible=false,last=0,frame,pointer={x:0,y:0,inside:false},pauseUntil=0;
  function draw(){renderer.setView(yaw,pitch,zoom);}
  function select(index){renderer.select(index);$('#nodeTitle').textContent=modules[index].title;$('#nodeDescription').textContent=modules[index].description;$('#selectedModule').textContent=modules[index].name.toUpperCase();$('#statusCartridge').textContent=modules[index].name.toUpperCase();document.querySelectorAll('[data-node]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.node)===index)));loadSource(index);}
  document.querySelectorAll('[data-node]').forEach(b=>{
@@ -55,7 +55,7 @@ else{
  canvas.addEventListener('pointerup',e=>{if(!moved){const r=canvas.getBoundingClientRect(),index=renderer.hit(e.clientX-r.left,e.clientY-r.top);if(index!==undefined)select(index);}drag=null;pauseUntil=performance.now()+1800;});
  canvas.addEventListener('pointercancel',()=>{drag=null;pauseUntil=performance.now()+1800;});
  canvas.addEventListener('wheel',e=>{if(!e.ctrlKey)return;e.preventDefault();zoom=Math.max(.7,Math.min(1.16,zoom-e.deltaY*.001));draw();},{passive:false});
- canvas.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home'].includes(e.key))return;e.preventDefault();if(e.key==='ArrowLeft')baseYaw-=.1;if(e.key==='ArrowRight')baseYaw+=.1;if(e.key==='ArrowUp')basePitch=Math.min(.8,basePitch+.05);if(e.key==='ArrowDown')basePitch=Math.max(.18,basePitch-.05);if(e.key==='Home'){baseYaw=.48;basePitch=.24;zoom=1;}yaw=baseYaw;pitch=basePitch;pauseUntil=performance.now()+3000;draw();});
+ canvas.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home'].includes(e.key))return;e.preventDefault();if(e.key==='ArrowLeft')baseYaw-=.1;if(e.key==='ArrowRight')baseYaw+=.1;if(e.key==='ArrowUp')basePitch=Math.min(.8,basePitch+.05);if(e.key==='ArrowDown')basePitch=Math.max(.18,basePitch-.05);if(e.key==='Home'){baseYaw=.4;basePitch=.2;zoom=1;}yaw=baseYaw;pitch=basePitch;pauseUntil=performance.now()+3000;draw();});
  new ResizeObserver(()=>renderer.resize()).observe(canvas);
  new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;if(visible)draw();}).observe(canvas);
  function animate(time){
